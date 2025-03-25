@@ -1,3 +1,43 @@
+#################### Example set up for simulation ###################
+
+{
+  ncovb = 2 # num site level covariates
+  ncovw = 2 # num sample level covariates
+  n = 10 # num sites
+  nT = 20 # num time-points
+  M = rep(5, n*nT) # num samples per site
+  K = rep(5, sum(M)) # num replicates per sample
+}
+
+dataParams <- list(n = n,
+                   nT = nT,
+                   M = M,
+                   K = K,
+                   w_standards = c(3e+07, 3e+06, 3e+05, 3e+04, 3e+03, 3e+02, 3e+01), # standard concentrations
+                   K_standards = 3, # num replicates per standard concentration
+                   CT.max = 40 # Censoring limit
+)
+
+hyperParams <- list(tau = 1, # sd time series
+                    sigma = 1, # sd samples
+                    tau2.1 = 1, # variance across sites when t=1
+                    betab = c(1, -1), # site covariate coeffs
+                    betaw = c(1, -1), # sample covariate coeffs
+                    betab0 = 6, # intercept across sites when t=1
+                    alpha1.0 = 44, # mean plate intercept
+                    alpha2.0 = -1.7, # mean plate slope
+                    sigma_alpha1 = .1, # sd plate intercept
+                    sigma_alpha2 = .01, # sd plate slope
+                    rho = rep(1, n), # time series coeff
+                    a = 0.2, # plate variance intercept
+                    b = -0.25, # plate variance slope
+                    lambda0 = 3e+3, # mean contamination concentration
+                    sd_lambda = 100, # sd contamination concentration
+                    p0 = c(0.05, 0.1), # prob contamination and inhibition
+                    multiplier = -9/10 # inhibition effect
+)
+
+
 #################### simulate data ###########################
 # Function that returns an example data set 
 
