@@ -243,7 +243,7 @@ Full_Code <- nimbleCode({
       mu[i] <- alpha1 + alpha2*log(w[id_sample[i]])
       sd[i] <- sqrt(exp(a + b*log(w[id_sample[i]])))
       Ct[i] ~ dCt(mu[i], sd[i], sd_cont, type[i])
-      delta_inv[i] ~ dinterval(Ct[i], CT.max) # CT.max I think works for all delta_inv
+      delta_inv[i] ~ dinterval(Ct[i], CT.max) 
     }
     for (i in 1:num_replicates_star){
       mu_star[i] <- alpha1 + alpha2*log(w_star[i])
@@ -424,7 +424,7 @@ Sigmay_Code <- nimbleCode({
       mu[i] <- alpha1 + alpha2*log(w[id_sample[i]])
       sd[i] <- sigma.y
       Ct[i] ~ dCt(mu[i], sd[i], sd_cont, type[i])
-      delta_inv[i] ~ dinterval(Ct[i], CT.max) # CT.max I think works for all delta_inv
+      delta_inv[i] ~ dinterval(Ct[i], CT.max) 
     }
     for (i in 1:num_replicates_star){
       mu_star[i] <- alpha1 + alpha2*log(w_star[i])
@@ -589,7 +589,7 @@ Nocont_Code <- nimbleCode({
       mu[i] <- alpha1 + alpha2*log(w[id_sample[i]])
       sd[i] <- sqrt(exp(a + b*log(w[id_sample[i]])))
       Ct[i] ~ dnorm(mu[i], sd[i])
-      delta_inv[i] ~ dinterval(Ct[i], CT.max) # CT.max I think works for all delta_inv
+      delta_inv[i] ~ dinterval(Ct[i], CT.max) 
     }
     for (i in 1:num_replicates_star){
       mu_star[i] <- alpha1 + alpha2*log(w_star[i])
