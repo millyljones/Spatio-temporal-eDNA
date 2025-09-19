@@ -9,7 +9,9 @@
   K = rep(5, sum(M)) # num replicates per sample
 }
 
-dataParams <- list(n = n,
+dataParams <- list(ncovb = ncovb,
+                   ncovw = ncovw,
+                   n = n,
                    nT = nT,
                    M = M,
                    K = K,
@@ -193,3 +195,4 @@ simulateData <- function(dataParams,
   list("trueParams" = trueParams, 
        "dataParams" = dataParams)
 }
+
