@@ -18,12 +18,10 @@ The repository contains the following files:
 3. Simulate Data.R : Contains the function to simulate an example qPCR data set.
 4. Simulate-Data-Walkthrough : A walkthrough to simulating an example qPCR data set with the functions from `Simulate Data.R'
 
-The following sections explain in more detail how to use the code in the above files.
-
-# Simulate Data
+### Simulating data
 
 See Simulate-Data-Walkthrough.
 
-# Model Codes
+### Analysing qPCR survey data
 
 See Analyse-qPCR-survey-data. 
