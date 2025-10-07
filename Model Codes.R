@@ -83,6 +83,43 @@ rCt <- nimbleFunction(run = function(n = integer(0),
   
 })
 
+##################### d_exp_uniform ###########################
+# dbetab0 is a nimble function returning the density function of
+# the exponential-uniform density function for betab0
+# rbetab0 is a nimble function returning a randomly generated value
+# with density dbetab0
+
+# x is the log-DNA concentration
+# b is the maximum DNA concentration for the uniform distribution
+
+dbetab0 <- nimbleFunction(run = function(x = double(0),
+                                         b = double(0),
+                                         log = integer(0, default = 0)){
+  
+  # exp(betab0) should be uniform(0, b), so d(betab0) <- 1/b * exp(betab0) 
+  returnType(double(0))
+  
+  dbetab0 <- exp(x)/b
+  
+  return(dbetab0)
+})
+
+rbetab0 <- nimbleFunction(run = function(n = integer(0),
+                                         b = double(0)){
+  # random generating function for dbetab0
+  
+  if(n!=1){
+    stop('rbetab0 is only set up for n = 1')
+  }
+  
+  returnType(double(0))
+  
+  rbetab0 <- log(runif(1, 0, b))
+  
+  return(rbetab0)
+  
+})
+
 ##################### nimble models ###########################
 # Full_Code is Model 1
 # Sigmay_Code is Model 2 (constant plate variance)
@@ -116,7 +153,8 @@ Full_Code <- nimbleCode({
   a ~ dnorm(a0, sd_a)
   b ~ dnorm(b0, sd_b)
   
-  betab0 ~ dnorm(mean_betab0, sd_betab0)
+  #betab0 ~ dnorm(mean_betab0, sd_betab0)
+  betab0 ~ dbetab0(b.max)
   
   if (numP == 1){
     alpha1 ~ dnorm(alpha10, sd = sigma_alpha)
@@ -293,7 +331,8 @@ Sigmay_Code <- nimbleCode({
   sigma <- sqrt(sigma2)
   sd_rho <- sqrt(sd_rho2)
   
-  betab0 ~ dnorm(mean_betab0, sd_betab0)
+  #betab0 ~ dnorm(mean_betab0, sd_betab0)
+  betab0 ~ dbetab0(b.max)
   
   if (numP == 1){
     alpha1 ~ dnorm(alpha10, sd = sigma_alpha)
@@ -477,7 +516,8 @@ Nocont_Code <- nimbleCode({
   a ~ dnorm(a0, sd_a)
   b ~ dnorm(b0, sd_b)
   
-  betab0 ~ dnorm(mean_betab0, sd_betab0)
+  #betab0 ~ dnorm(mean_betab0, sd_betab0)
+  betab0 ~ dbetab0(b.max)
   
   if (numP == 1){
     alpha1 ~ dnorm(alpha10, sd = sigma_alpha)
