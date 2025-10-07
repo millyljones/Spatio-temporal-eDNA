@@ -17,11 +17,3 @@ The repository contains the following files:
 2. Model Codes.R : Contains the NIMBLE models for Models 1, 2, and 3 from the Manuscript.
 3. Simulate Data.R : Contains the function to simulate an example qPCR data set.
 4. Simulate-Data-Walkthrough : A walkthrough to simulating an example qPCR data set with the functions from `Simulate Data.R'
-
-### Simulating data
-
-See Simulate-Data-Walkthrough.
-
-### Analysing qPCR survey data
-
-See Analyse-qPCR-survey-data. 
